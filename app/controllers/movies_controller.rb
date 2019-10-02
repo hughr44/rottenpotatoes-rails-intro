@@ -31,7 +31,7 @@ class MoviesController < ApplicationController
     end
     
     if(params[:sort].nil? and !(session[:sort].nil?)) or (params[:ratings].nil? and !(session[:ratings].nil?))
-      flash.keep
+      #flash.keep
       redirect_to movies_path(sort: session[:sort],ratings: session[:ratings])
     elsif !params[:sort].nil? || params[:ratings].nil?
       if !params[:ratings].nil?
@@ -41,7 +41,7 @@ class MoviesController < ApplicationController
       end
     # this causing redirect problem when heroku starts up???
     elsif !session[:ratings].nil? || !session[:sort].nil?
-      flash.keep
+      #flash.keep
       redirect_to movies_path(sort: session[:sort],ratings: session[:ratings])
     else
       @movies = Movie.all

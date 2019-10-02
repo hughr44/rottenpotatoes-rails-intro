@@ -11,33 +11,33 @@ class MoviesController < ApplicationController
   end
 
   def index
+    #
+    #@all_ratings = ['G','PG','PG-13','R']
     
-    @all_ratings = ['G','PG','PG-13','R']
+    #session[:ratings] = session[:ratings] || {'G'=>'', 'PG'=>'', 'PG-13'=>'', 'R'=>''}
+    #session[:ratings] = params[:ratings] || session[:ratings]
     
-    session[:ratings] = session[:ratings] || {'G'=>'', 'PG'=>'', 'PG-13'=>'', 'R'=>''}
-    session[:ratings] = params[:ratings] || session[:ratings]
-    
-    @sort = params[:sort] || session[:sort]
-    session[:sort] = @sort
+    #@sort = params[:sort] || session[:sort]
+    #session[:sort] = @sort
     
     #@movies = Movie.where(rating: session[:ratings].keys).order(session[:sort])
     
-    if(params[:sort].nil? and !(session[:sort].nil?)) or (params[:ratings].nil? and !(session[:ratings].nil?))
-      flash.keep
-      redirect_to movies_path(sort: session[:sort],ratings: session[:ratings])
-    elsif !params[:sort].nil? || params[:ratings].nil?
-      if !params[:ratings].nil?
-        @movies = Movie.where(rating: params[:ratings].keys).order(session[:sort])
-      else
-        @movies = Movie.all.order(session[:sort])
-      end
-    elsif !session[:ratings].nil? || !session[:sort].nil?
-      flash.keep
-      redirect_to movies_path(sort: session[:sort],ratings: session[:ratings])
-    else
-      @movies = Movie.all
-    end
-    
+    #if(params[:sort].nil? and !(session[:sort].nil?)) or (params[:ratings].nil? and !(session[:ratings].nil?))
+    #  flash.keep
+    #  redirect_to movies_path(sort: session[:sort],ratings: session[:ratings])
+    #elsif !params[:sort].nil? || params[:ratings].nil?
+    #  if !params[:ratings].nil?
+    #    @movies = Movie.where(rating: params[:ratings].keys).order(session[:sort])
+    #  else
+    #    @movies = Movie.all.order(session[:sort])
+    #  end
+    #elsif !session[:ratings].nil? || !session[:sort].nil?
+    #  flash.keep
+    #  redirect_to movies_path(sort: session[:sort],ratings: session[:ratings])
+    #else
+    #  @movies = Movie.all
+    #end
+    @movies = Movie.all
   end
 
   def new
